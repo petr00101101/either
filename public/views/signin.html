@@ -1,0 +1,147 @@
+<div class = "right">
+
+  <div class = "rightText">
+    <a class="Currentlink" >Sign In </a>
+    <div style="  display:inline-block;color:#9E9CA5"> or </div>
+    <a class="links" id= "signUpbutton">Sign Up </a>
+    <br>
+    <br>
+    <div style="color:white;position:relative;left:-90px;top:5px;opacity:0.8;color:#444444">username</div>
+    <input type="text"  style="color:white;border-bottom:2px solid #d14040" id="username" name="fname" placeholder="Enter your name here">
+    <br>
+    <div style="color:white;position:relative;left:-90px;top:5px;opacity:0.8;color:#444444">password</div>
+    <input type="password"  style="color:white;border-bottom:2px solid #d14040" id="password" name="lname" placeholder="Enter your password here">
+    <br>
+    <button onclick="storage()" class="button" id="login" style="vertical-align:middle;position:relative;left:-45px;color:white"><span>Sign In </span></button>
+
+    <script src="https://code.jquery.com/jquery-2.1.3.min.js"></script>
+    <script src="js/login.js"></script>
+  </div>
+</div>
+
+
+<style>
+ .left{
+   text-align: left;
+   font-family: Arial, Helvetica, sans-serif;
+   color:gray;
+   position:absolute;
+   top: 0%;
+   right: 45%;
+    height: 100%;
+    width: 55%;
+   background-color: #232323;
+ }
+ .right{
+   text-align: center;
+   position:relative;
+   top: 15%;
+   left: 30%;
+    height: 400px;
+    width: 400px;
+     background-color: #111111;
+}
+ .img{
+    position:relative;
+    height: 100%;
+    width: 100%;
+
+ }
+
+input[type=text] {
+    color: gray;
+    width: 60%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    box-sizing: border-box;
+    border: none;
+    border-bottom: 2px solid gray;
+    background: none;
+}
+input[type=password] {
+    color: gray;
+    width: 60%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    box-sizing: border-box;
+    border: none;
+    border-bottom: 2px solid gray;
+    background: none;
+}
+
+.button {
+  position:relative;
+  right: 2%;
+  display: inline-block;
+  border-radius: 4px;
+      background-color: #181818;
+  border: none;
+  color: #FFFFFF;
+  text-align: center;
+  font-size: 28px;
+  padding: 20px;
+  width: 40%;
+  transition: all 0.5s;
+  cursor: pointer;
+  margin: 5px;
+}
+
+.button span {
+  cursor: pointer;
+  display: inline-block;
+  position: relative;
+  transition: 0.5s;
+}
+
+.button span:after {
+  content: '\00bb';
+  position: absolute;
+  opacity: 0;
+  top: 0;
+  right: -20px;
+  transition: 0.5s;
+}
+
+.button:hover span {
+  padding-right: 25px;
+}
+
+.button:hover span:after {
+  opacity: 1;
+  right: 0;
+}
+.signUp{
+  background: none;
+  border:none;
+  color:gray;
+}
+.leftText{
+  width:70%;
+  position: relative;
+  right:-15%;
+  top:20%;
+}
+.rightText{
+font-family: "Arial", Times, serif;
+  position: relative;
+  top:20%;
+
+}
+.Currentlink{
+  display:inline-block;
+  text-decoration:none;
+  color:white;
+  border-bottom: 1px solid #d14040;
+}
+.links{
+  display:inline-block;
+  text-decoration:none;
+  color:#9E9CA5 ;
+}
+input:focus{
+  outline:none;
+}
+body{
+  background-color:#151515;
+}
+</style>

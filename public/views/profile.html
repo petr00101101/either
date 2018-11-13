@@ -1,0 +1,353 @@
+<script src="https://code.jquery.com/jquery-2.1.3.min.js"></script>
+<script src="/public/js/session.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="/public/js/home.js"></script>
+<script src="/public/js/profile.js"></script>
+
+<ul class="left" style="overflow-x:hidden">
+  <li>
+    <img id = "todd"style="width:100%;height:8%;position:relative;overflow-x:hidden;top:5px" src="">
+    <form action="/UpdateImage" enctype="multipart/form-data" method="post">
+    <input type="file" name="upload" multiple>
+    <input type="submit" value="Upload">
+    </form>
+  </li>
+  <li>
+    <a onclick="setInfo()" id="info" class="active" href="#news">
+      <img style="position:relative;left:20%;width:50%;height:4%;color:white" src="http://www.michigan.gov/images/som/SOMicon_Information_525557_7.png">
+    </a>
+  </li>
+  <li>
+    <a onclick="setEdit()" id="edit" href="#news">
+      <img style="position:relative;left:20%;width:50%;height:4%;color:white" src="http://pyro.indiantradebird.org/images/edit.png">
+    </a>
+  </li>
+</ul>
+
+
+<h2 class="name" style="color:white;font-family: Arial, Helvetica, sans-serif;" href="#home">PERSONAL</h2>
+<ul class="right">
+  <li>
+    <a class="active" id="homer" href="#">Home</a>
+  </li>
+  <li>
+    <a href="#" id="outIt">Sign Out</a>
+  </li>
+</ul>
+
+
+<div id="content" class="content">
+  <h3 style="position:relative;left:100px">WELCOME,</h3>
+  <h5 style="position:relative;left:100px">this is your profile page. Here, you can view your information, including your password, your username, and more. </h5>
+  <br>
+  <div class="tag" style="color:#666666;font-family: Arial, Helvetica, sans-serif;position: relative;top:-5px">username:</div>
+  <div class="box">
+    <p id="name"></p>
+  </div>
+  <br>
+  <br>
+  <br>
+  <div class="tag" style="color:#666666;font-family: Arial, Helvetica, sans-serif;position: relative;top:-5px">password:</div>
+  <div class="box">
+    <p id="pass"></p>
+  </div>
+  <br>
+  <br>
+  <br>
+  <div class="tag" style="color:#666666;font-family: Arial, Helvetica, sans-serif;position: relative;top:-5px">password:</div>
+  <div class="box">
+    <p id="admin"></p>
+  </div>
+  <br>
+  <br>
+  <br>
+  <fieldset class="fieldset-auto-width" style="border-color:#222;height:20%">
+    <legend>statistics</legend>
+    <br>
+    <div style="width:48%;display:inline-block;padding-top:0px">
+      <div class="fieldTag" style="color:#666666;font-family: Arial, Helvetica, sans-serif;position: relative;top:-5px">You've clicked Blue... times since you last clicked on your profile page</div>
+      <div class="fieldBox">
+        <div style="position:relative;left:50%;top:50%;height:50%" id="blue">0</div>
+      </div>
+    </div>
+    <div style="width:48%;display:inline-block;padding-top:0px">
+      <div class="fieldTag" style="color:#666666;font-family: Arial, Helvetica, sans-serif;position: relative;top:-5px">You've clicked Red... times since you last clicked on your profile page</div>
+      <div class="fieldBox">
+        <div style="position:relative;left:50%;top:50%;height:50%" id="red">0</div>
+      </div>
+    </div>
+    <div style="width:48%;display:inline-block;padding-top:20px">
+      <div class="fieldTag" style="color:#666666;font-family: Arial, Helvetica, sans-serif;position: relative;top:-5px">Your favorite Colour is...</div>
+      <div class="fieldBox">
+        <div style="position:relative;left:50%;top:50%;height:50%" id="favorite"></div>
+      </div>
+    </div>
+  </fieldset>
+</div>
+
+
+<div id="content2" class="content2">
+  <div>This is your editing page. Here, you can alter and change the questions or add a picture</div>
+  <br>
+  <br>
+  <div style="width:48%;display:inline-block;padding-top:0px">
+    <div style="color:white">index:</div>
+    <br>
+    <input type="text" id="ident" class="editBox">
+    <div style="position:relative;left:50%;top:50%;height:50%"></div>
+    </input>
+  </div>
+  <br>
+  <div style="width:60%;position: absolute;top:40%;display:inline-block;padding-top:0px;display:inline-block">
+    <div style="color:white;display:inline-block">questions:</div>
+    <div style="display:inline-block">
+      <input type="text" id="left" class="questionBox"></input>
+      <input type="text" id="right" class="questionBox"></input>
+    </div>
+  </div>
+  <input id="createButton" style="color:#d14040" class="button" type="button" value="Create"></input>
+  <input id="updateButton" style="color:#d14040" class="button" type="button" value="Update"></input>
+  <input id="deleteButton"style="color:#d14040"  class="button" type="button" value="Delete"></input>
+
+</div>
+<!-- -->
+
+<script type="text/javascript">
+       function previewFile(){
+       var preview = document.querySelector('img'); //selects the query named img
+      // var preview = document.getElementById("iamg");
+           var file    = document.querySelector('input[type=file]').files[0]; //sames as here
+       var reader  = new FileReader();
+
+       reader.onloadend = function () {
+           preview.src = reader.result;
+       }
+
+       if (file) {
+           reader.readAsDataURL(file); //reads the data as a URL
+       } else {
+           preview.src = "";
+       }
+  }
+  function setInfo() {
+    $("#content").css("display", "block");
+    $("#content2").css("display", "none");
+  }
+  function setEdit() {
+    if( $("#admin").html() == "abcd"){
+        $("#content").css("display", "none");
+        $("#content2").css("display", "block");
+    }
+    else{
+        alert("sorry, only admins can edit questions/things");
+    }
+  }
+  function profiler() {
+    window.location.href = "http://localhost:3000/index";
+  }
+  function yourFunction() {
+    document.getElementById("red").innerHTML = localStorage.getItem("red");
+    document.getElementById("blue").innerHTML = localStorage.getItem("blue");
+    document.getElementById("name").innerHTML = localStorage.getItem("name");
+    document.getElementById("pass").innerHTML = localStorage.getItem("thisPass");
+    document.getElementById("admin").innerHTML = localStorage.getItem("admin");
+    if (document.getElementById("red").innerHTML > document.getElementById("blue").innerHTML) {
+      document.getElementById("favorite").innerHTML = "red";
+    }
+    else {
+      document.getElementById("favorite").innerHTML = "blue";
+    }
+
+  }
+previewFile();  //calls the function named previewFile()
+  window.onload = yourFunction;
+   //document.getElementById("blue").value = global.localStorage.getItem("data");
+    //window.onload = alert(localStorage.getItem("blueClicker"));
+</script>
+
+<style>
+  body {
+
+    margin: 0;
+    background-color: #050505;
+  }
+
+  .left {
+    z-index: 4;
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    width: 6%;
+    background-color: #151515;
+    color: white;
+    position: fixed;
+    height: 100%;
+    overflow: auto;
+    display: inline-block;
+  }
+
+  .left li a {
+    overflow-x: hidden;
+    align-content: center;
+    display: block;
+    color: #999;
+    padding: 25% 10%;
+    text-decoration: none;
+  }
+
+  .left li a.active {
+    padding: 25% 10%;
+    background-color: #050505;
+    backface-visibility: hidden;
+    color: white;
+  }
+
+  .left li a:hover:not(.active) {
+    background-color: #222;
+    color: white;
+  }
+
+  .right ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    position: relative;
+    top: 5%;
+    overflow: hidden;
+    background-color: #333;
+
+  }
+
+  .right li {
+    list-style-type: none;
+    float: right;
+    opacity: 0.6;
+    font-size: 100%;
+
+  }
+
+  .right li a {
+    display: block;
+
+    color: white;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+  }
+
+  .name {
+    position: relative;
+    left: 8%;
+    float: left;
+  }
+
+  .right li a:hover {
+    background-color: #444;
+  }
+
+  .content {
+    position: relative;
+    left: 5%;
+    width: 90%;
+    top: 10%;
+    color: #d14040;
+    font-family: Arial, Helvetica, sans-serif;
+    overflow-y: hidden;
+    overflow-x: hidden;
+  }
+
+  .content2 {
+    display: none;
+    position: relative;
+    width: 90%;
+    top: 10%;
+    left:10%;
+    color: #d14040;
+    font-family: Arial, Helvetica, sans-serif;
+    overflow-x: hidden;
+  }
+
+  .box {
+    background-color: #333;
+    width: 20%;
+    color: gray;
+    float: left;
+    position: relative;
+    left: 80px;
+    opacity: 1;
+    border-radius: 60px;
+    height: 30px;
+    display: block;
+  }
+
+  .tag {
+    position: relative;
+    left: 80px;
+  }
+
+  .box p {
+    position: relative;
+    top: -40%;
+    right: -35%;
+    display: block;
+  }
+
+  .fieldset-auto-width {
+    position: relative;
+    left: 80px;
+    width: 90%;
+  }
+
+  .fieldTag {
+    left: 0%;
+  }
+
+  .fieldBox {
+    background-color: #333;
+    width: 100%;
+    color: gray;
+    float: left;
+    position: relative;
+    left: 0%;
+    opacity: 1;
+    border-radius: 3px;
+    height: 30px;
+  }
+
+  .editBox {
+
+    background-color: #333;
+    width: 10%;
+    color: white;
+    float: left;
+    position: relative;
+    opacity: 0.2;
+    height: 30px;
+    border-color: white;
+    left: 0%;
+    top: 20%;
+  }
+
+  .questionBox {
+    background-color: #333;
+    width: 50%;
+    color: white;
+    float: left;
+    position: relative;
+    opacity: 0.2;
+    height: 30px;
+    border-color: white;
+    left: 0%;
+    top: 20%;
+  }
+
+  .button {
+    background-color: #222;
+    border: none;
+    color: #6DCCF2;
+    height: 30px;
+    width: 70px;
+  }
+</style>

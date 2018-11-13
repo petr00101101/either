@@ -1,0 +1,196 @@
+<head>
+  <title>sender</title>
+  <meta charset="utf-8"/>
+  <script id="jquery" src="https://code.jquery.com/jquery-2.1.3.min.js"></script>
+  <script src="js/session.js"></script>
+  <script src="/public/js/comments.js"></script>
+  <script src="/public/js/home.js"></script>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet"  href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+
+
+<div class="body">
+    <div id="navbar">
+      <h2>WOULD YOU RATHER</h2>
+      <a id="thing3" class="thing">SIGN OUT</a>
+      <a id="thing2" class="thing">PROFILE</a>
+      <a id="searchButton" type="submit">QUESTIONS</a>
+    </div>
+    <h6 style="position:relative; left:17px; color:white; font-size:12px; margin-bottom:1px; text-align: left; margin-top: 2px; width:100%" id="personName"class="name">  Welcome, </h6>
+    <div class="boxes">
+       <button style = "color:white"  class="leftOption" id = "LEFT"><br><br><br><br><br><br><h3 id="peoplePercentLEFT" value="0" style="color:white;display: none;font-size: 40px">0</h3><p id="peopleLEFT" value="0" style="color:white;display: none">0</p><p id = "leftButtons" value = "Click me">Click Me</p><br><br><br><br><br><br><br></button>
+       <button style = "color:white"  class="rightOption" id = "RIGHT"><br><br><br><br><br><br><h3 id="peoplePercentRIGHT" value="0" style="color:white;display: none;font-size: 40px">0</h3><p id="peopleRIGHT" value="0" style="color:white;display: none">0</p><p id = "rightButtons" value = "Click me">Click Me</p><br><br><br><br><br><br><br></button>
+    </div>
+    <div class="next" style="background-color: black;opacity: 0.2">
+        <div id="title" style="position: relative;left:10%; color:white;display: inline-block;font-size: 30px"></div>
+        <input id="NEXTBUTTON" class="NEXTBUTTON" type="button" style="position: absolute;left:80%; color:white" value="NEXT">
+    </div>
+</div>
+<div class="comments">
+    <div class="position">
+        <h3 style="display:inline-block;font-size: 25px; margin-bottom: 0px">SUBMIT A COMMENT</h3>
+        <br>
+        <h6 style="margin-top: 4px;font-size:12px">Please make sure to use your username found in the top left as your name</h6>
+  <!--      <div class="left" style="display: inline-block; width:40%;position: relative;top:-20px;">
+            <input id="commentName" type="text" style="width:100%;margin-bottom:10px" placeholder="name" >
+            <br>
+            <input id="commentEmail" type="text" style="width:100%;margin-bottom:10px" placeholder="email">
+            <br>
+            <input id="commentWebsite" type="text" style="width:100%;margin-bottom:10px" placeholder="website">
+        </div>  -->
+        <div class="right" style="display: inline-block;width:35%;height:150px;position: relative">
+            <textArea id="boxText" type="text" style="position: relative; background-color:#030303;border-color:#111;color:gray;width:100%" rows="9" columns="50" name="comment" form="usrform"></textArea>
+        </div>
+        <div class="addRight" style="display: inline-block;width:5%;height:140px;position: relative">
+            <input id="buttonComment" style="background-color:#030303;width:100%;height:100%;color:white;float:right;border-color:#111" type="button" value="Comment" />
+        </div>
+        <div id="header">
+            <ul id="list1" class="listThing" autocomplete="on"></ul>
+        </div>
+        <br><br><br>
+    </div>
+</div>
+
+
+<script type="text/javascript">
+  $(document).ready(function(){
+      $("#title").html($("#leftButtons").html() + " vs " + $("#rightButtons").html());
+  });
+</script>
+
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+body {
+  margin: 0;
+  font-size: 28px;
+  font-family: "Lato", sans-serif;
+  background-color: black;
+  overflow-x :hidden;
+}
+.comments{
+    background-color: #0f0f0f;
+}
+.header {
+  background-color: #f1f1f1;
+  padding: 30px;
+  text-align: center;
+}
+.body{
+    background-image: url("https://www.setaswall.com/wp-content/uploads/2018/01/Dark-Grey-Wallpaper-15-2560x1600.jpg");
+    background-image: url("http://wallpapersite.com/images/pages/pic_h/6417.jpg");
+    width:100%;
+
+}
+.left input{
+    border: 10px solid black;
+    background-color: black;
+    font-family: "Lato", sans-serif;
+    color:gray;
+}
+#navbar {
+  overflow: hidden;
+  background-color: none;
+}
+#navbar a {
+  float: right;
+  display: block;
+  color: #f2f2f2;
+  text-align: center;
+  padding: 14px 12px;
+  text-decoration: none;
+
+  font-size: 17px;
+}
+.position{
+    position: relative;
+    left:10%;
+    color:#888;
+}
+.personComment{
+  display: none;
+  position: relative;
+  left:20px;
+}
+#navbar h2 {
+  float: left;
+  display: block;
+  color: #f2f2f2;
+  text-align: center;
+  padding: 0px 16px;
+  text-decoration: none;
+  font-size: 21px;
+}
+#navbar a:hover {
+  background-color: #111;
+  color:  gray;
+}
+.name{font-family: "Lato", sans-serif;}
+.content {
+  padding: 16px;
+}
+
+.sticky {
+  position: fixed;
+  top: 0;
+  width: 100%;
+}
+
+.sticky + .content {
+  padding-top: 60px;
+}
+.NEXTBUTTON{
+    background-color: #222;
+    border:none;
+    margin-bottom: 3px;
+    margin-top: 4px;
+    color:white;
+    opacity: 1;
+    text-align: center;
+    padding: 10px 50px;
+}
+.leftOption{
+    border-top: 1px solid #f74747;
+    background: #CC2323;
+    background-image: linear-gradient(bottom, #d02323 6%, #ea3434 77%);
+    background-image: -o-linear-gradient(bottom, #d02323 6%, #ea3434 77%);
+    background-image: -moz-linear-gradient(bottom, #d02323 6%, #ea3434 77%);
+    background-image: -webkit-linear-gradient(bottom, #d02323 6%, #ea3434 77%);
+    background-image: -ms-linear-gradient(bottom, #d02323 6%, #ea3434 77%);
+    background-image: -webkit-gradient(linear, left bottom, left top, color-stop(0.06, #d02323), color-stop(0.77, #ea3434));
+    position: relative;
+    display:inline-block;
+    width:40%;
+    left:10%;
+    opacity: 1;
+    border:none;
+    margin-bottom: 20px;
+  }
+  .rightOption{
+    border-top: 1px solid #7cd4f2;
+    background: #d14040;
+    clear: left;
+    background-image: linear-gradient(bottom, #40b2df 6%, #68c9ef 77%);
+    background-image: -o-linear-gradient(bottom, #40b2df 6%, #68c9ef 77%);
+    background-image: -moz-linear-gradient(bottom, #40b2df 6%, #68c9ef 77%);
+    background-image: -webkit-linear-gradient(bottom, #40b2df 6%, #68c9ef 77%);
+    background-image: -ms-linear-gradient(bottom, #40b2df 6%, #68c9ef 77%);
+    background-image: -webkit-gradient(linear, left bottom, left top, color-stop(0.06, #40b2df), color-stop(0.77, #68c9ef));
+    display:inline-block;
+    width:40%;
+    position:relative;
+    left: 10%;
+    opacity: 1;
+    border:none;
+
+  }
+  .rightOption:hover{
+      opacity: 1;
+      background: radial-gradient( circle, transparent 50%, black 150%), #6DCCF2;
+  }
+  .leftOption:hover{
+      opacity: 1;
+      background: radial-gradient( circle, transparent 50%, black 150%), red;
+  }
+</style>
